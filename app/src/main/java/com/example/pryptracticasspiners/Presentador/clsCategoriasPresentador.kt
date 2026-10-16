@@ -1,5 +1,6 @@
 package com.example.pryptracticasspiners.Presentador
 
+import android.util.Log
 import com.example.pryptracticasspiners.modelo.clsCategoriasModelo
 import com.example.pryptracticasspiners.modelo.dataCategorias
 import com.example.pryptracticasspiners.vista.MainActivity
@@ -11,9 +12,6 @@ class clsCategoriasPresentador(val vista: MainActivity) {
     private val modelo = clsCategoriasModelo()
     private var listaCategorias: List<dataCategorias> = emptyList()
 
-    // Nota: Asegúrate de pasar tu interfaz 'vista' por el constructor de esta clase
-    // si aún no lo has hecho (ej. class clsCategoriasPresentador(private val vista: ContratoCategorias.Vista) { ... })
-
     fun iniciar() {
         // Se usa un Scope simple para no bloquear la interfaz
         CoroutineScope(Dispatchers.Main).launch {
@@ -23,7 +21,8 @@ class clsCategoriasPresentador(val vista: MainActivity) {
                 vista.mostrarCategorias(listaCategorias)
 
             } catch (e: Exception) {
-                vista.mostrarError("Error: " + e.localizedMessage)
+                Log.e("API_ERROR", "Error al conectar con la API: ${e.message}", e)
+                vista.mostrarError("Error de conexión: " + (e.localizedMessage ?: e.message))
             }
         }
     }
