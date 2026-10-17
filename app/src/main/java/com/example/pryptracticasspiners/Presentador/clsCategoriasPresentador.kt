@@ -28,7 +28,7 @@ class clsCategoriasPresentador(val vista: MainActivity) {
     }
 
     fun seleccionarCategoria(posicion: Int) {
-        if (posicion > 0 && posicion < listaCategorias.size) {
+        if (posicion >= 0 && posicion < listaCategorias.size) {
             val categoria = listaCategorias[posicion]
             vista.mostrarMensajeExito(categoria.id, categoria.categoria)
         }
