@@ -1,8 +1,9 @@
 package com.example.pryptracticasspiners.Presentador
 
-import android.util.Log
 import com.example.pryptracticasspiners.modelo.clsCategoriasModelo
+import com.example.pryptracticasspiners.modelo.clsProductosModelo
 import com.example.pryptracticasspiners.modelo.dataCategorias
+import com.example.pryptracticasspiners.modelo.dataProductos
 import com.example.pryptracticasspiners.vista.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

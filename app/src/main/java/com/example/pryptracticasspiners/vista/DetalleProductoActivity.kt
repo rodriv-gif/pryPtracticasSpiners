@@ -1,11 +1,15 @@
 package com.example.pryptracticasspiners.vista
 
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.viewpager2.widget.ViewPager2
+import com.example.pryptracticasspiners.Adaptador.GaleriaAdaptador
+import com.example.pryptracticasspiners.Presentador.clsDetalleProductoPresentador
 import com.example.pryptracticasspiners.R
 import com.example.pryptracticasspiners.modelo.dataImagenesProducto
 
@@ -52,13 +56,6 @@ class DetalleProductoActivity : AppCompatActivity() {
     fun mostrarImagenes(imagenes: List<dataImagenesProducto>) {
         adapterGaleria.actualizarLista(imagenes)
     }
-    fun mostrarError(mensaje: String) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
-    }
-
-    fun mostrarImagenes(listaImagenes: List<dataImagenesProducto>) {
-    }
-
     fun mostrarError(mensaje: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
     }
