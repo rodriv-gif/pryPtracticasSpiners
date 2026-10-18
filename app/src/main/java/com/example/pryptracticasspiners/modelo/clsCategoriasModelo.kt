@@ -1,12 +1,11 @@
 package com.example.pryptracticasspiners.modelo
 
 class clsCategoriasModelo {
-    suspend fun obtenerCategorias(): List<dataCategorias> {
-        val datos = RetrofitCliente.apiService.obtenerCategorias() // Aquí hace el pedido a la BD
+    suspend fun obtenerProductosPorCategoria(categoriaId: Int): List<dataProductos> {
+        return RetrofitCliente.apiService.obtenerProductos(categoriaId)
+    }
 
-        val listaFinal = mutableListOf(dataCategorias(0, "Todas las categorias"))
-        listaFinal.addAll(datos)
-
-        return listaFinal // Retorna la lista directamente
+    suspend fun obtenerDetalleProducto(productoId: Int): List<dataImagenesProducto> {
+        return RetrofitCliente.apiService.detalleProducto(productoId)
     }
 }

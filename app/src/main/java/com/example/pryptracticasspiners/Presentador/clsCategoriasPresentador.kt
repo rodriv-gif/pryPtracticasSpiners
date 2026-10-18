@@ -9,20 +9,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class clsCategoriasPresentador(val vista: MainActivity) {
-    private val modelo = clsCategoriasModelo()
+    private val modeloCategorias = clsCategoriasModelo()
+    private val modeloProductos = clsProductosModelo()
     private var listaCategorias: List<dataCategorias> = emptyList()
 
     fun iniciar() {
         // Se usa un Scope simple para no bloquear la interfaz
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                // Aquí recibes el RETURN directo del modelo
-                listaCategorias = modelo.obtenerCategorias()
+                // 1. Cargar la lista de categorías en el Spinner
+                listaCategorias = modeloCategorias.obtenerCategorias()
                 vista.mostrarCategorias(listaCategorias)
 
+                // 2. Cargar TODOS los productos por defecto (categoria_id = 0)
+                cargarProductos(0)
+
             } catch (e: Exception) {
-                Log.e("API_ERROR", "Error al conectar con la API: ${e.message}", e)
-                vista.mostrarError("Error de conexión: " + (e.localizedMessage ?: e.message))
+                vista.mostrarError("Error: " + e.localizedMessage)
             }
         }
     }
@@ -30,7 +33,24 @@ class clsCategoriasPresentador(val vista: MainActivity) {
     fun seleccionarCategoria(posicion: Int) {
         if (posicion >= 0 && posicion < listaCategorias.size) {
             val categoria = listaCategorias[posicion]
-            vista.mostrarMensajeExito(categoria.id, categoria.categoria)
+            // Si categoria.id es 0, la API traerá todos; si es > 0, filtrará por esa categoría
+            cargarProductos(categoria.id)
         }
+    }
+
+    private fun cargarProductos(categoriaId: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val productos = modeloProductos.obtenerProductosPorCategoria(categoriaId)
+                vista.mostrarProductos(productos)
+            } catch (e: Exception) {
+                vista.mostrarError("Error al cargar productos: " + e.localizedMessage)
+            }
+        }
+    }
+
+    fun seleccionarProducto(producto: dataProductos) {
+        val precioDouble = producto.precio.toDoubleOrNull() ?: 0.0
+        vista.abrirDetalleProducto(producto.id, producto.nombre, producto.descripcion, precioDouble)
     }
 }
