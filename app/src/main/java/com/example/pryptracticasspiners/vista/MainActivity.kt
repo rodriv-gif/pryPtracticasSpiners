@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var presenter: clsCategoriasPresentador
     private lateinit var spinnerCategorias: Spinner
+    private lateinit var recyclerProductos: RecyclerView
+    private lateinit var adapterProductos: ProductosAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         spinnerCategorias = findViewById(R.id.spnCategorias)
-        presenter = clsCategoriasPresentador(this) // Asegúrate de pasar 'this' como la vista si tu presentador lo requiere
+        recyclerProductos = findViewById(R.id.rvLista)
+
+        recyclerProductos.layoutManager = LinearLayoutManager(this)
+        adapterProductos = ProductosAdaptador(this, emptyList())
+        recyclerProductos.adapter = adapterProductos
+        presenter = clsCategoriasPresentador(this)
 
         configurarListeners()
         presenter.iniciar()
@@ -49,6 +56,20 @@ class MainActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categorias)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCategorias.adapter = adapter
+    }
+    fun mostrarProductos(productos: List<dataProductos>) {
+        adapterProductos.actualizarLista(productos)
+    }
+    fun seleccionarProducto(producto: dataProductos) {
+        presenter.seleccionarProducto(producto)
+    }
+    fun abrirDetalleProducto(id: Int, nombre: String, descripcion: String, precio: Double) {
+        val intent = Intent(this, DetalleProductoActivity::class.java)
+        intent.putExtra("PRODUCTO_ID", id)
+        intent.putExtra("NOMBRE_PRODUCTO", nombre)
+        intent.putExtra("DESCRIPCION_PRODUCTO", descripcion) // <--- El nombre debe ser EXACTAMENTE "DESCRIPCION_PRODUCTO"
+        intent.putExtra("PRECIO_PRODUCTO", precio)
+        startActivity(intent)
     }
 
     fun mostrarMensajeExito(id: Int, nombre: String) {
