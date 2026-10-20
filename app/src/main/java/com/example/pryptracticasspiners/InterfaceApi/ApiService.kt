@@ -16,4 +16,7 @@ interface ApiService {
     suspend fun obtenerProductos(@Query("categoria_id") categoriaId: Int): List<dataProductos>
     @GET("detalle_producto.php")
     suspend fun detalleProducto(@Query("producto_id") productoId: Int): List<dataImagenesProducto>
+
+    //@POST("login.php").
+    //suspend fun login(@Body loginRequest: LoginRequest): LoginResponse
 }
