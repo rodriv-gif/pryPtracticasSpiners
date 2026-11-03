@@ -12,6 +12,7 @@ import android.widget.EditText
 import com.example.pryptracticasspiners.Presentador.clsLoginPresentador
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var presenter: clsLoginPresentador
@@ -46,14 +47,14 @@ class LoginActivity : AppCompatActivity() {
 
     fun loginExitoso(mensaje: String, nombreCliente: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
+    fun mostrarError(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
+    }
+}
 
-    val intent = Intent(this, MainActivity::class.java)
-    StarActivity(Intend)
-    finish()
-}
-fun mostrarError(mensaje: String) {
-    Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
-}
 
 

@@ -26,11 +26,12 @@ class GaleriaAdaptador(private var listaImagenes: List<dataImagenesProducto>): R
 
     override fun onBindViewHolder(holder: GaleriaViewHolder, position: Int) {
         val imagen = listaImagenes[position]
-        val baseUrl = "http://192.168.120.133/tienda_api/"
+        val baseUrl = "http://192.168.116.133/tienda_api/"
         val urlCompleta = baseUrl + imagen.urlimagen
 
         Glide.with(holder.itemView.context)
             .load( urlCompleta)
+            .override(com.bumptech.glide.request.target.Target.SIZE_ORIGINAL)
             .placeholder(android.R.drawable.ic_menu_gallery)
             .error(android.R.drawable.stat_notify_error)
             .into(holder.imgGaleria)

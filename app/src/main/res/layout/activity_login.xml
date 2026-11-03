@@ -7,50 +7,60 @@
     android:layout_height="match_parent"
     tools:context=".vista.LoginActivity">
 
-        <TextView
-            android:id="@+id/txtTitulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:text="Iniciar Sesión"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Iniciar Sesión"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/txtUsuario"
-            android:layout_width="357dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="16dp"
-            android:hint="Nombre de usuario"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="@+id/txtTitulo"
-            app:layout_constraintStart_toStartOf="@+id/txtTitulo"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+    <EditText
+        android:id="@+id/txtUsuario"
+        android:layout_width="301dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="168dp"
+        android:hint="Nombre de usuario"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
-        <EditText
-            android:id="@+id/txtClave"
-            android:layout_width="357dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txtUsuario"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="326dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="44dp"
+        android:text="Ingresar"
+        app:layout_constraintEnd_toEndOf="@+id/txtClave"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="@+id/txtClave"
+        app:layout_constraintTop_toBottomOf="@+id/txtClave" />
 
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="308dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="44dp"
-            android:text="Ingresar"
-            app:layout_constraintEnd_toEndOf="@+id/txtClave"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtClave" />
+    <EditText
+        android:id="@+id/txtClave"
+        android:layout_width="303dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="105dp"
+        android:layout_height="119dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtUsuario"
+        app:layout_constraintEnd_toEndOf="@+id/txtTitulo"
+        app:layout_constraintStart_toStartOf="@+id/txtTitulo"
+        app:srcCompat="@drawable/mgnlog" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

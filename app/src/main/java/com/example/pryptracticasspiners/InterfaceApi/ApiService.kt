@@ -1,10 +1,14 @@
 package com.example.pryptracticasspiners.InterfaceApi
 
+import com.example.pryptracticasspiners.modelo.LoginRequest
+import com.example.pryptracticasspiners.modelo.LoginResponse
 import com.example.pryptracticasspiners.modelo.dataCategorias
 import com.example.pryptracticasspiners.modelo.dataImagenesProducto
 import com.example.pryptracticasspiners.modelo.dataProductos
 import kotlinx.serialization.SerialName
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
@@ -17,6 +21,6 @@ interface ApiService {
     @GET("detalle_producto.php")
     suspend fun detalleProducto(@Query("producto_id") productoId: Int): List<dataImagenesProducto>
 
-    //@POST("login.php").
-    //suspend fun login(@Body loginRequest: LoginRequest): LoginResponse
+    @POST("login.php")
+    suspend fun iniciarSesion(@Body request: LoginRequest): LoginResponse
 }
